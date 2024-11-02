@@ -1,10 +1,13 @@
-import { NestFactory } from '@nestjs/core';
+import express, {Request, Response, NextFunction} from 'express';
 
-import { AppModule } from './app.module';
+const app = express();
+app.use(express.json());
 
-export default async function() {
-    const nestApp = await NestFactory.create(AppModule);
-    await nestApp.init();
-    const adapter = nestApp.getHttpAdapter();
-    return adapter.getInstance();
-}
+const router = express.Router();
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
+    res.status(200).send('hello').end();
+});
+
+app.use('/', router);
+
+module.exports = app;
