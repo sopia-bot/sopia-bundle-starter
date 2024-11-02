@@ -1,0 +1,19 @@
+{
+  "name": "worker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/worker/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/worker",
+        "main": "apps/worker/src/index.ts",
+        "tsConfig": "apps/worker/tsconfig.lib.json",
+        "assets": ["apps/worker/*.md"]
+      }
+    }
+  }
+}
