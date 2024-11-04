@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "nx serve views",
     "build": "nx run-many -t build",
-    "postbuild": "node tools/postbuild.mjs"
+    "postbuild": "node tools/postbuild.mjs",
+	"preinstall": "npx only-allow pnpm"
   },
   "private": true,
   "dependencies": {
