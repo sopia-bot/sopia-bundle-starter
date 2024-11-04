@@ -6,10 +6,13 @@
     "serve": "nx serve views",
     "build": "nx run-many -t build",
     "postbuild": "node tools/postbuild.mjs",
-	"preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm"
   },
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.6",
     "axios": "^1.6.0",
     "express": "^4.21.1",
     "react": "18.3.1",
@@ -30,6 +33,7 @@
     "@nx/web": "20.0.7",
     "@nx/webpack": "20.0.7",
     "@nx/workspace": "20.0.7",
+    "@sopia-bot/core": "^2.4.0",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.3.12",
     "@swc/core": "~1.5.7",
