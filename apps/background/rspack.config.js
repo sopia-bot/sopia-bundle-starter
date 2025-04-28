@@ -1,14 +1,25 @@
-const path = require('path');
+const { resolve } = require('path');
 
 module.exports = {
-  entry: './apps/background/src/index.ts', // 엔트리 파일 경로
+  target: 'node',
+  entry: {
+    main: './src/index.ts',
+  },
   output: {
-    path: path.resolve(__dirname, '../../dist/apps/background'),
+    path: resolve(__dirname, '../../dist/apps/background'),
     filename: 'index.js',
     library: {
       type: 'commonjs2', // CommonJS 형식
     },
     libraryExport: 'default', // default 내보내기 활성화
+  },
+  watch: true, // 파일 감시 활성화
+  watchOptions: {
+    ignored: /node_modules/,
+    aggregateTimeout: 300,
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   module: {
     rules: [

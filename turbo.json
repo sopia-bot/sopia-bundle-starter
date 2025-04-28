@@ -1,0 +1,31 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local", "pnpm-lock.yaml"],
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        // Run `build` in workspaces I depend on first
+        "^build"
+      ],
+      // Cache all files emitted to the packages's directories
+      "outputs": ["dist/**", ".next/**", "public/_pagefind/**"]
+    },
+    "test": {
+      "outputs": ["dist/**"]
+    },
+    "types:check": {
+      "dependsOn": [
+        // Run `build` in workspaces I depend on first
+        "^build"
+      ],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "dev": {
+      "dependsOn": [
+        // Run `build` in workspaces I depend on first
+        "^build"
+      ],
+      "cache": false
+    }
+  }
+} 

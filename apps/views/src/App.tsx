@@ -1,16 +1,21 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { Route, Routes } from "react-router-dom";
 
-export default function App() {
+import IndexPage from "@/pages/index";
+import DocsPage from "@/pages/docs";
+import PricingPage from "@/pages/pricing";
+import BlogPage from "@/pages/blog";
+import AboutPage from "@/pages/about";
+
+function App() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-            This is sopia project.
-        </Typography>
-      </Box>
-    </Container>
+    <Routes>
+      <Route element={<IndexPage />} path="/" />
+      <Route element={<DocsPage />} path="/docs" />
+      <Route element={<PricingPage />} path="/pricing" />
+      <Route element={<BlogPage />} path="/blog" />
+      <Route element={<AboutPage />} path="/about" />
+    </Routes>
   );
 }
+
+export default App;
