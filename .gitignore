@@ -4,6 +4,7 @@
 dist
 tmp
 /out-tsc
+apps/background/src/prisma
 
 # dependencies
 node_modules
@@ -37,6 +38,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# prisma
+/prisma/dev.*
+/prisma/dbsrc
 
 .nx/cache
 .nx/workspace-data

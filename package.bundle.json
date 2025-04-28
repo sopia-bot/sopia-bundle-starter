@@ -4,7 +4,7 @@
   "description": "this is descript",
 	"description:ko": "이건 디스크립션입니다.",
   "version": "0.0.1",
-  "main": "./apps/worker/src/index.js",
+  "main": "./apps/worker/index.js",
   "page": "http://localhost:4200",
   "pageType": "http",
   "pageRoot": "apps/views",
@@ -12,19 +12,20 @@
   "debug": true,
   "stp": {
     "domain": "starter.sopia.dev",
-    "file": "./apps/background/src/index.js"
+    "file": "./apps/background/index.js"
   },
   "release-note": {
   },
   "sopia": {
     "ignore:upload": [
-      "node_modules"
+      "node_modules",
+      "migrated"
     ]
   },
   "dependencies": {
-    "@nestjs/common": "^10.4.6",
-    "@nestjs/core": "^10.4.6",
-    "@nestjs/mapped-types": "^2.0.5",
-    "@nestjs/platform-express": "^10.4.6"
+    "@prisma/client": "^6.0.1",
+    "prisma": "^5.22.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }

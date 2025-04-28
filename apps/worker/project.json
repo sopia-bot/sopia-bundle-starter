@@ -6,9 +6,11 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:swc",
+      "executor": "@nx/rspack:rspack",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "target": "node",
+        "rspackConfig": "apps/worker/rspack.config.js",
         "outputPath": "dist/apps/worker",
         "main": "apps/worker/src/index.ts",
         "tsConfig": "apps/worker/tsconfig.lib.json",
