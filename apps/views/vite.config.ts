@@ -1,23 +1,22 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   root: __dirname,
+  plugins: [react(), tailwindcss()],
   cacheDir: '../../node_modules/.vite/apps/views',
   server: {
     port: 4200,
     host: 'localhost',
   },
-  preview: {
-    port: 4300,
-    host: 'localhost',
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
   build: {
     outDir: '../../dist/apps/views',
     emptyOutDir: true,
@@ -31,5 +30,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), tsconfigPaths()],
 })

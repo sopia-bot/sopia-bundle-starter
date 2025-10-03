@@ -1,13 +1,10 @@
-import express, {Request, Response, NextFunction} from 'express';
+import express from 'express';
+import routes from './routes/user';
 
 const app = express();
 app.use(express.json());
 
-const router = express.Router();
-router.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).send('hello').end();
-});
+// 라우터 연결
+app.use('/user', routes);
 
-app.use('/', router);
-
-module.exports = app;
+export default app;
