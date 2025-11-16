@@ -61,7 +61,7 @@ pnpm lint
 - **Frontend**
   - React 18
   - TypeScript
-  - HeroUI
+  - Shadcn
   - React Router
   - React Query
   - Zustand (State Management)
@@ -69,7 +69,6 @@ pnpm lint
 
 - **Backend**
   - Express
-  - Prisma
   - Winston (Logging)
 
 - **Build Tools**
