@@ -1,37 +1,40 @@
 {
-  "name": "@sopia-bundle-react-ts-template/source",
+  "name": "sopia-bundle-starter",
+  "name:ko": "소피아 번들 시작팩",
+  "description": "this is descript",
+  "description:ko": "이건 디스크립션입니다.",
   "version": "0.0.0",
   "license": "MIT",
-  "packageManager": "pnpm@10.15.1",
+  "packageManager": "pnpm@10.21.0",
   "scripts": {
     "serve": "turbo run serve",
-    "build": "turbo run build",
+    "build": "node tools/build.mjs && turbo run build",
     "clean": "turbo run clean",
     "watch": "turbo run watch",
-    "dev": "turbo run dev",
-    "preinstall": "npx only-allow pnpm",
-    "postbuild": "pnpm exec node tools/postbuild.mjs"
+    "dev": "concurrently \"node tools/watch-config.mjs\" \"turbo run dev\"",
+    "preinstall": "npx only-allow pnpm"
   },
+  "release-note": {},
   "private": true,
-  "dependencies": {
-    "axios": "^1.11.0"
-  },
   "devDependencies": {
-    "@rspack/core": "^1.5.2",
+    "@rspack/core": "^1.6.1",
     "@rspack/dev-server": "1.1.4",
     "@rspack/plugin-minify": "^0.7.5",
     "@sopia-bot/core": "^2.4.0",
     "@swc-node/register": "~1.11.1",
-    "@swc/cli": "~0.7.8",
-    "@swc/core": "~1.13.5",
+    "@swc/cli": "~0.7.9",
+    "@swc/core": "~1.15.1",
     "@swc/helpers": "~0.5.17",
-    "@types/node": "24.3.1",
+    "@types/node": "24.10.0",
     "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^39.1.1",
+    "markdown-it": "^14.1.0",
     "prettier": "^3.6.2",
     "ts-node": "10.9.2",
     "tslib": "^2.8.1",
-    "turbo": "^2.5.6",
-    "typescript": "~5.9.2",
-    "typescript-eslint": "^8.42.0"
+    "turbo": "^2.6.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.3"
   }
 }
