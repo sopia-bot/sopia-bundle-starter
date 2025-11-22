@@ -1,10 +1,13 @@
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Home from './pages/home'
 
 function App() {
-
   return (
-    <div className="flex justify-center items-center w-full h-[100vh]">
-      <h1 className="text-white text-3xl font-bold">Hello Tailwindcss</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/index.html" element={<Navigate to="/" replace />} />
+      <Route path="/:pageUrl" element={<Home />} />
+    </Routes>
   )
 }
 

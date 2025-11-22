@@ -1,6 +1,7 @@
+console.log('NODE_ENV', process.env.NODE_ENV)
 export default {
     background: {
-        domain: 'starter.sopia.dev',
+        domain: 'dj-board.sopia.dev',
         baseDir: 'apps/background',
         entry: 'index.ts',
         output: {

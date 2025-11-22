@@ -15,8 +15,8 @@ const packageInfo = {
     version: pkg.version,
     main: path.posix.join(sopiaConfig.worker.baseDir, sopiaConfig.worker.output.filename),
     page: 'index.html',
-    pageRoot: sopiaConfig.views.devServer.use ? sopiaConfig.views.devServer.pageRoot : '',
-    pageVersion: 2,
+    pageRoot: sopiaConfig.views.devServer.use ? sopiaConfig.views.devServer.pageRoot : sopiaConfig.views.baseDir,
+    'page-version': 2,
     stp: {
         domain: sopiaConfig.background.domain,
         file: path.posix.join(sopiaConfig.background.baseDir, sopiaConfig.background.output.filename),
@@ -29,6 +29,7 @@ const packageInfo = {
     sopia: sopiaConfig.sopia,
 }
 
+console.log('devServer.use', sopiaConfig.views.devServer.use)
 if (sopiaConfig.views.devServer.use) {
     packageInfo.pageType = 'http'
     packageInfo.page = 'http://' + sopiaConfig.views.devServer.host + ':' + sopiaConfig.views.devServer.port

@@ -11,9 +11,12 @@
   },
   "devDependencies": {
     "@rspack/cli": "^1.6.1",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "axios": "^1.7.9"
   }
 }

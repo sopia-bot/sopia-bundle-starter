@@ -1,0 +1,470 @@
+/* D-Day 카운트다운 위젯 스타일 */
+
+/* ============================================================================
+   CSS Variables - 파스텔톤 색상 시스템
+   ============================================================================ */
+
+:root {
+  /* 파스텔톤 색상 (생생한 파스텔) */
+  --danger: hsl(0, 70%, 65%);
+  --warning: hsl(30, 75%, 60%);
+  --success: hsl(140, 65%, 55%);
+  --info: hsl(200, 70%, 60%);
+  
+  /* 그라데이션 색상 */
+  --gradient-danger-start: hsl(0, 70%, 65%);
+  --gradient-danger-end: hsl(340, 70%, 70%);
+  
+  --gradient-warning-start: hsl(30, 75%, 60%);
+  --gradient-warning-end: hsl(45, 75%, 65%);
+  
+  --gradient-success-start: hsl(140, 65%, 55%);
+  --gradient-success-end: hsl(170, 65%, 60%);
+  
+  --gradient-info-start: hsl(200, 70%, 60%);
+  --gradient-info-end: hsl(220, 70%, 65%);
+}
+
+.dark {
+  /* 다크모드 - 조금 더 어두운 파스텔 */
+  --danger: hsl(0, 60%, 55%);
+  --warning: hsl(30, 65%, 50%);
+  --success: hsl(140, 55%, 45%);
+  --info: hsl(200, 60%, 50%);
+  
+  --gradient-danger-start: hsl(0, 60%, 55%);
+  --gradient-danger-end: hsl(340, 60%, 60%);
+  
+  --gradient-warning-start: hsl(30, 65%, 50%);
+  --gradient-warning-end: hsl(45, 65%, 55%);
+  
+  --gradient-success-start: hsl(140, 55%, 45%);
+  --gradient-success-end: hsl(170, 55%, 50%);
+  
+  --gradient-info-start: hsl(200, 60%, 50%);
+  --gradient-info-end: hsl(220, 60%, 55%);
+}
+
+/* ============================================================================
+   Container
+   ============================================================================ */
+
+.dday-container {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  border-color: hsl(var(--border));
+  background-color: hsl(var(--card));
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* ============================================================================
+   Header
+   ============================================================================ */
+
+.dday-header {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dday-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ============================================================================
+   Grid Layout
+   ============================================================================ */
+
+.dday-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .dday-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .dday-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.dday-empty {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border-width: 2px;
+  border-style: dashed;
+  border-color: hsl(var(--border));
+  padding: 2rem;
+  text-align: center;
+}
+
+/* ============================================================================
+   D-Day Cards
+   ============================================================================ */
+
+.dday-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  min-height: 320px;
+  color: white;
+}
+
+.dday-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* 카드 배경 그라데이션 */
+.dday-card-danger {
+  background: linear-gradient(135deg, var(--gradient-danger-start), var(--gradient-danger-end));
+}
+
+.dday-card-warning {
+  background: linear-gradient(135deg, var(--gradient-warning-start), var(--gradient-warning-end));
+}
+
+.dday-card-success {
+  background: linear-gradient(135deg, var(--gradient-success-start), var(--gradient-success-end));
+}
+
+.dday-card-info {
+  background: linear-gradient(135deg, var(--gradient-info-start), var(--gradient-info-end));
+}
+
+/* ============================================================================
+   Card Header
+   ============================================================================ */
+
+.dday-card-header {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.dday-card-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  color: white;
+  flex: 1;
+  line-height: 1.3;
+}
+
+/* D-Day 뱃지 */
+.dday-badge {
+  border-radius: 9999px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   Card Description
+   ============================================================================ */
+
+.dday-card-description {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   Main Display (큰 D-Day 숫자)
+   ============================================================================ */
+
+.dday-main-display {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.dday-days-number {
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.dday-days-label {
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ============================================================================
+   Time Boxes (시/분/초)
+   ============================================================================ */
+
+.dday-time-boxes {
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.dday-time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.dday-time-value {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.dday-time-label {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ============================================================================
+   Card Footer
+   ============================================================================ */
+
+.dday-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ============================================================================
+   Action Buttons (호버 시 표시)
+   ============================================================================ */
+
+.dday-card-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.dday-card:hover .dday-card-actions {
+  opacity: 1;
+}
+
+.dday-action-btn {
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.dday-action-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================================
+   Responsive Adjustments
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .dday-days-number {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  
+  .dday-time-value {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .dday-card {
+    min-height: 280px;
+  }
+}
+
+/* ============================================================================
+   Completed State
+   ============================================================================ */
+
+.dday-completed-icon {
+  animation: celebrate 0.6s ease-in-out;
+}
+
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(-10deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(10deg);
+  }
+}
+
+.dday-completed-text {
+  color: white;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.dday-completed-subtext {
+  color: rgba(255, 255, 255, 0.9);
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   Completed Screen (D-Day 완료 화면)
+   ============================================================================ */
+
+.dday-completed-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  animation: fadeInScale 0.6s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dday-completed-icon {
+  font-size: 5rem;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.dday-completed-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.dday-completed-message {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.dday-completed-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+}
+
+/* 모바일 완료 화면 조정 */
+@media (max-width: 768px) {
+  .dday-completed-icon {
+    font-size: 4rem;
+  }
+  
+  .dday-completed-title {
+    font-size: 1.5rem;
+  }
+  
+  .dday-completed-message {
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================================
+   Typography
+   ============================================================================ */
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+

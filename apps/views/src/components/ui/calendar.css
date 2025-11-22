@@ -1,0 +1,368 @@
+/* ==================== 기본 캘린더 스타일 ==================== */
+
+.rbc-calendar {
+  font-family: inherit;
+  background: transparent;
+}
+
+/* ==================== 커스텀 툴바 ==================== */
+
+.calendar-toolbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 0;
+}
+
+.calendar-toolbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-toolbar-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  white-space: nowrap;
+}
+
+.calendar-nav-btn,
+.calendar-today-btn {
+  color: hsl(var(--foreground));
+  background: transparent;
+  border: 1px solid hsl(var(--border));
+  padding: 0.375rem 0.875rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.calendar-nav-btn:hover,
+.calendar-today-btn:hover {
+  background: hsl(var(--accent));
+  border-color: hsl(var(--border));
+}
+
+.calendar-nav-btn:focus,
+.calendar-today-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.3);
+}
+
+/* ==================== 월 뷰 ==================== */
+
+.rbc-month-view {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: hsl(var(--background));
+}
+
+.rbc-month-row {
+  border: none;
+  overflow: visible;
+  min-height: 100px;
+}
+
+.rbc-month-row + .rbc-month-row {
+  border-top: 1px solid hsl(var(--border));
+}
+
+/* ==================== 헤더 (요일) ==================== */
+
+.rbc-header {
+  padding: 1rem 0.5rem;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: hsl(var(--muted-foreground));
+  border-bottom: 1px solid hsl(var(--border));
+  background: transparent;
+  text-align: center;
+}
+
+.rbc-header + .rbc-header {
+  border-left: 1px solid hsl(var(--border));
+}
+
+/* ==================== 날짜 셀 배경 ==================== */
+
+.rbc-day-bg {
+  border-left: 1px solid hsl(var(--border));
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.rbc-day-bg:hover {
+  background: hsl(var(--accent) / 0.3);
+}
+
+.rbc-today:hover {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.rbc-off-range-bg {
+  background: transparent;
+}
+
+.rbc-today {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+/* 주말 배경 - 일요일(1번째), 토요일(7번째) */
+.rbc-row-bg .rbc-day-bg:nth-child(7n+1) {
+  background: #f5f5f5;
+}
+
+.rbc-row-bg .rbc-day-bg:nth-child(7n) {
+  background: #f5f5f5;
+}
+
+.rbc-row-bg .rbc-day-bg:nth-child(7n+1):hover {
+  background: #e0e0e0;
+}
+
+.rbc-row-bg .rbc-day-bg:nth-child(7n):hover {
+  background: #e0e0e0;
+}
+
+/* ==================== 날짜 번호 ==================== */
+
+.rbc-date-cell {
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.rbc-date-cell > a {
+  color: hsl(var(--foreground));
+  font-weight: 400;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.rbc-off-range .rbc-date-cell > a {
+  color: hsl(var(--muted-foreground));
+  opacity: 0.4;
+}
+
+/* 오늘 날짜 강조 */
+.rbc-now .rbc-date-cell > a {
+  color: white;
+  font-weight: 600;
+  background: #3b82f6;
+  border-radius: 9999px;
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+/* ==================== 이벤트 ==================== */
+
+.rbc-event {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 1px 2px;
+}
+
+.rbc-event:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.rbc-event.rbc-selected {
+  background: #1d4ed8;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.rbc-event-label {
+  display: none;
+}
+
+.rbc-event-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ==================== 더보기 링크 ==================== */
+
+.rbc-show-more {
+  color: hsl(var(--muted-foreground));
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  margin: 1px 2px;
+  border-radius: 0.25rem;
+  background: transparent;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.rbc-show-more:hover {
+  color: hsl(var(--foreground));
+  background: hsl(var(--accent));
+  text-decoration: none;
+}
+
+/* ==================== 슬롯 선택 ==================== */
+
+.rbc-slot-selection {
+  background: rgba(59, 130, 246, 0.2);
+  border: 2px solid #3b82f6;
+  border-radius: 0.375rem;
+}
+
+/* ==================== 오버레이 (더보기 클릭시) ==================== */
+
+.rbc-overlay {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background: hsl(var(--popover));
+  padding: 0.75rem;
+  z-index: 50;
+}
+
+.rbc-overlay > * + * {
+  margin-top: 0.25rem;
+}
+
+.rbc-overlay-header {
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid hsl(var(--border));
+  margin-bottom: 0.5rem;
+  color: hsl(var(--foreground));
+}
+
+/* ==================== 다크 모드 ==================== */
+
+.dark .rbc-calendar {
+  color: hsl(var(--foreground));
+}
+
+.dark .rbc-month-view {
+  background: hsl(var(--background));
+}
+
+.dark .rbc-today {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.dark .rbc-event {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dark .rbc-event:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* 다크 모드 주말 배경 */
+.dark .rbc-row-bg .rbc-day-bg:nth-child(7n+1),
+.dark .rbc-row-bg .rbc-day-bg:nth-child(7n) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .rbc-row-bg .rbc-day-bg:nth-child(7n+1):hover,
+.dark .rbc-row-bg .rbc-day-bg:nth-child(7n):hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==================== 반응형 ==================== */
+
+@media (max-width: 768px) {
+  .calendar-toolbar {
+    grid-template-columns: auto 1fr auto;
+    gap: 0.5rem;
+  }
+
+  .calendar-toolbar-label {
+    font-size: 0.9375rem;
+  }
+
+  .rbc-header {
+    font-size: 0.75rem;
+    padding: 0.75rem 0.25rem;
+  }
+
+  .rbc-date-cell {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .rbc-date-cell > a {
+    font-size: 0.8125rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .rbc-now .rbc-date-cell > a {
+    width: 1.625rem;
+    height: 1.625rem;
+  }
+
+  .rbc-event {
+    font-size: 0.75rem;
+    padding: 0.125rem 0.375rem;
+  }
+
+  .rbc-month-row {
+    min-height: 80px;
+  }
+}
+
+/* ==================== 접근성 ==================== */
+
+.calendar-nav-btn:focus-visible,
+.calendar-today-btn:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+.rbc-event:focus {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* ==================== 애니메이션 ==================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rbc-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
