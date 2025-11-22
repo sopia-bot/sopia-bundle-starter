@@ -497,13 +497,44 @@ export default function Home() {
                     onClick={() => {
                       const urlPath = currentPageUrl || '';
                       const url = `${PAGE_DOMAIN}/d/${userInfo.id}/${urlPath}`;
-                      navigator.clipboard.writeText(url).then(() => {
-                        console.log('✅ URL 복사됨:', url);
-                        setUrlCopied(true);
-                        setTimeout(() => setUrlCopied(false), 2000);
-                      }).catch((err) => {
-                        console.error('❌ URL 복사 실패:', err);
-                      });
+                      
+                      // Clipboard API 지원 확인
+                      if (navigator.clipboard && navigator.clipboard.writeText) {
+                        // 최신 Clipboard API 사용
+                        navigator.clipboard.writeText(url).then(() => {
+                          console.log('✅ URL 복사됨:', url);
+                          setUrlCopied(true);
+                          setTimeout(() => setUrlCopied(false), 2000);
+                        }).catch((err) => {
+                          console.error('❌ URL 복사 실패:', err);
+                          setErrorMessage('URL 복사에 실패했습니다. 브라우저 설정을 확인해주세요.');
+                          setErrorDialogOpen(true);
+                        });
+                      } else {
+                        // 폴백: 구형 방법 사용
+                        try {
+                          const textArea = document.createElement('textarea');
+                          textArea.value = url;
+                          textArea.style.position = 'fixed';
+                          textArea.style.left = '-999999px';
+                          document.body.appendChild(textArea);
+                          textArea.select();
+                          const successful = document.execCommand('copy');
+                          document.body.removeChild(textArea);
+                          
+                          if (successful) {
+                            console.log('✅ URL 복사됨 (폴백 방법):', url);
+                            setUrlCopied(true);
+                            setTimeout(() => setUrlCopied(false), 2000);
+                          } else {
+                            throw new Error('execCommand failed');
+                          }
+                        } catch (err) {
+                          console.error('❌ URL 복사 실패 (폴백 방법):', err);
+                          setErrorMessage('URL 복사에 실패했습니다. URL을 수동으로 복사해주세요.');
+                          setErrorDialogOpen(true);
+                        }
+                      }
                     }}
                     className={`w-full rounded-md border px-3 py-2 text-left text-xs font-mono transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                       urlCopied
